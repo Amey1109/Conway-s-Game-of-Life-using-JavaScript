@@ -18,11 +18,19 @@ function createGrid() {
 
 //called once at the beginning of the program
 function setup() {
-  grid[10][15] = true
-  grid[10][16] = true
-  grid[10][17] = true
+  //oscillator
+  grid[10][7] = true;
+  grid[10][8] = true;
+  grid[10][9] = true;
 
-  createCanvas(600, 600);
+  //Glider
+  grid[5][5] = true;
+  grid[5][6] = true;
+  grid[5][7] = true;
+  grid[4][7] = true;
+  grid[3][6] = true;
+
+  createCanvas(500, 500);
 }
 
 //From Wikipedia
@@ -102,18 +110,3 @@ function draw() {
     line((i / cols) * width, 0, (i / rows) * width, width);
   }
 }
-
-function mouseClicked() {
-  let row = Math.floor((mouseY / height) * rows);
-  let col = Math.floor((mouseX / height) * cols);
-  if (row >= 0 && col >= 0 && row < rows && col < cols) {
-    grid[row][col] = !grid[row][col];
-  }
-}
-
-let button = document.getElementById("playButton");
-document.addEventListener("click", function () {
-  
-  
-  nextGeneration();
-});
