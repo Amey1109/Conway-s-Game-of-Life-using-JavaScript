@@ -56,9 +56,12 @@ function nextGeneration() {
         [1, 1],
       ];
       let aliveNeighbours = 0;
+
+      //checks with each neighbor iterate through each element in direction
       for (d of directions) {
         let neighbourRow = i + d[0];
         let neighbourCol = j + d[1];
+
         //Checks Weather the negihbour Row and column are in grid or not
         if (
           neighbourRow >= 0 &&
@@ -66,26 +69,29 @@ function nextGeneration() {
           neighbourRow < rows &&
           neighbourCol < cols
         ) {
-          if (grid[neighbourRow][neighbourCol]) {
+          //Checks that if cell is having neighbour or not
+          if (grid[neighbourRow][neighbourCol] == true) {
             aliveNeighbours++;
           }
         }
       }
       //decide weather cell is alive or not
-      if (grid[i][j]) {
+      if (grid[i][j] == true) {
         newGrid[i][j] = aliveNeighbours == 2 || aliveNeighbours == 3;
       } else {
         newGrid[i][j] = aliveNeighbours == 3;
       }
     }
   }
+
+  //Change previous grid to the new grid
   grid = newGrid;
 }
 
 function draw() {
   background(255);
-  //display the grid
 
+  //display the grid
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       if (grid[i][j]) {
